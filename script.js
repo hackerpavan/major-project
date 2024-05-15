@@ -1,10 +1,6 @@
-//form validation
-// window.alert("sometext");
-
 const form = document.getElementById("form");
 const fname = document.getElementById("fname");
 const dob = document.getElementById("dob");
-// gender
 const email = document.getElementById("email");
 const number = document.getElementById("number");
 const street = document.getElementById("street");
@@ -15,10 +11,7 @@ const event = document.getElementById("event");
 const restrictions = document.getElementById("restrictions");
 const tshirtSize = document.getElementById("tshirt");
 
-
-// Get the current date
 const currentDate = new Date();
-// Format the current date as YYYY-MM-DD
 const formattedDate = currentDate.toISOString().split('T')[0];
 dob.value = formattedDate
 
@@ -29,7 +22,6 @@ form.addEventListener("submit", (e) => {
 })
 const sendData = (sRate, count) => {
     if(sRate === count){
-        // alert("Registration successfull")
         const toast = document.getElementsByClassName("toast");
         toast[0].classList.add("show")
           
@@ -37,12 +29,12 @@ const sendData = (sRate, count) => {
 }
 const successMsg = () =>{
     let inputClass = document.getElementsByClassName("input__box");
-    // console.log(inputClass);
+
     var count = inputClass.length - 1;
     for (let i = 0; i < inputClass.length; i++) {
         if (inputClass[i].className === "input__box success") {
             var sRate = 0 + i;
-            // console.log(sRate);
+
             sendData(sRate, count);
         } else{
             return false;
@@ -62,21 +54,19 @@ const isEmail = (email) => {
     return true;
 }
 function validateGender() {
-    // Get all radio buttons with name "gender"
+
     const genderOptions = document.querySelectorAll('input[name="gender"]');
 
-    // Initialize a variable to track if any radio button is checked
     let checked = false;
 
-    // Loop through each radio button
     genderOptions.forEach(option => {
-        // If a radio button is checked, set the checked variable to true
+
         if (option.checked) {
             checked = true;
             setSuccessMsg2(genderOptions)
         }else if(!checked) {
             setErrorMsg2(genderOptions, "Please select a gender.")
-            // alert("Please select a gender.");
+
         }
     });
 
@@ -93,10 +83,8 @@ function validate() {
     const eventVal = event.value;
     const restrictionsVal = restrictions.value.trim();
     const tshirtSizeVal = tshirtSize.value;
-    // gender validation 
     validateGender()
 
-    // name validation
     if (fnameVal === "") {
         setErrorMsg(fname, "Name cannot be blank")
     } else if (fnameVal.length <= 2) {
@@ -105,8 +93,6 @@ function validate() {
         setSuccessMsg(fname)
     }
 
-    
-    // email validation
     if (emailVal === "") {
         setErrorMsg(email, "Email cannot be blank")
     } else if (!isEmail(emailVal)) {
@@ -115,7 +101,6 @@ function validate() {
         setSuccessMsg(email)
     }
 
-    // phone validation
     if (numberVal === "") {
         setErrorMsg(number, "Phone Number cannot be blank")
     } else if (numberVal.length != 10) {
@@ -126,7 +111,6 @@ function validate() {
         setSuccessMsg(number)
     }
 
-    // street address validation
     if (streetVal === "") {
         setErrorMsg(street, "street address cannot be blank")
     } else if (streetVal.length <= 4) {
@@ -135,7 +119,6 @@ function validate() {
         setSuccessMsg(street)
     }
 
-    // city validation
     if (cityVal === "") {
         setErrorMsg(city, "Name cannot be blank")
     } else if (cityVal.length <= 2) {
@@ -144,7 +127,6 @@ function validate() {
         setSuccessMsg(city)
     }
 
-    // state validation
     if (stateVal === "") {
         setErrorMsg(state, "Please select a state.")
         state.focus();
@@ -152,7 +134,6 @@ function validate() {
         setSuccessMsg(state)
     }
 
-    // zipcode validation
     if (zipcodeVal === "") {
         setErrorMsg(zipcode, "zipcode cannot be blank")
     } else if (zipcodeVal.length >= 7) {
@@ -164,7 +145,6 @@ function validate() {
     } else {
         setSuccessMsg(zipcode)
     }
-    // event validation
     if (eventVal === "") {
         setErrorMsg(event, "Please select a event.")
         event.focus();
@@ -172,7 +152,6 @@ function validate() {
         setSuccessMsg(event)
     }
 
-    // restriction validation
     if (restrictionsVal === "") {
         setErrorMsg(restrictions, "Dietary restriction cannot be blank")
     } else if (restrictionsVal.length <= 50) {
@@ -180,7 +159,6 @@ function validate() {
     } else {
         setSuccessMsg(restrictions)
     }
-    // tshirt size validation
     if (tshirtSizeVal === "") {
         setErrorMsg(tshirtSize, "Please select a t-shirt size.")
         tshirtSize.focus();
@@ -188,27 +166,17 @@ function validate() {
         setSuccessMsg(tshirtSize)
     }
 
-    // dob validation
-    // Parse the date of birth value to create a Date object
     const dobDate = new Date(dobVal);
-    // Get the current date
     const currentDate = new Date();
-    // Calculate the age in milliseconds
     const ageInMillis = currentDate - dobDate;
-    // Convert age to years
     const ageInYears = ageInMillis / (1000 * 60 * 60 * 24 * 365.25);
     
-    // Check if age is less than 16 years
     if (ageInYears < 16) {
-        // If less than 16 years, display an error message
         setErrorMsg(dob, "You must be at least 16 years old.");
-        return false; // Return false to indicate validation failure
+        return false;
     } else {
-        // If age is 16 or older, remove any existing error message
         setSuccessMsg(dob);
-        // return true; // Return true to indicate validation success
     }
-    // call success function for toast 
     successMsg();
 }
 
@@ -224,15 +192,14 @@ function setSuccessMsg(input) {
     formControl.className = "input__box success"
 }
 
-// for gender 
 function setErrorMsg2(input, errMsg) {
-    const parentElement = input[0].closest('.gender-details'); // Get the common parent element
+    const parentElement = input[0].closest('.gender-details');
     parentElement.getElementsByClassName('input__box')[0].classList.add("error")
     const small = parentElement.querySelector("small");
     small.innerText = errMsg;
 }
 function setSuccessMsg2(input) {
-    const parentElement = input[0].closest('.gender-details'); // Get the common parent element
+    const parentElement = input[0].closest('.gender-details');
     parentElement.getElementsByClassName('input__box')[0].classList.add("success")
     parentElement.getElementsByClassName('input__box')[0].classList.remove("error")
 
