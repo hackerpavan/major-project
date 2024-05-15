@@ -41,11 +41,6 @@
     }
   }
 
-
-  /* form style */
-  /* all */
-/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"); */
-
 * {
     margin: 0;
     padding: 0;
@@ -54,22 +49,12 @@
 }
 
 :root {
-    /* #1BFFFF */
     --main-cyan: #1BFFFF;
     --main-blue: #2E3192;
     --main-grey: #ccc;
     --sub-grey: #d9d9d9;
 }
 
-
-/* container and form */
-/* .container {
-    max-width: 700px;
-    width: 100%;
-    background: #fff;
-    padding: 25px 30px;
-    border-radius: 5px;
-} */
 .formStyle{
     background: rgb(216, 170, 245);
     padding: 50px;
@@ -118,7 +103,6 @@ form {
     line-height: 20px;
 }
 
-/* inside the form user details */
 form .user__details .input__box {
     width: calc(100% / 2 - 20px);
     margin-bottom: 15px;
@@ -201,7 +185,6 @@ form .user__details .input__box {
     visibility: visible;
 }
 
-/* inside the form gender details */
 
 form .gender-details .gender-title {
     font-size: 10px;
@@ -242,7 +225,6 @@ form input[type="radio"] {
     display: none;
 }
 
-/* submit button */
 form .button {
     height: 45px;
     margin: 45px 0;
@@ -291,7 +273,6 @@ form .button:active{
     }
 
     .container form .user__details {
-        /* max-height: 300px; */
         overflow-y: scroll;
     }
 
